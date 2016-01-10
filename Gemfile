@@ -48,4 +48,5 @@ gem 'slim'
 gem 'slim-rails'
 gem 'coffee-views'
 
+gem 'rspec-rails'
 
