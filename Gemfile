@@ -44,6 +44,12 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+
+gem 'countries'
+gem 'google-analytics-rails'
+gem 'devise'
+gem 'faker', :require => false
+gem 'bootstrap-sass'
 gem 'slim'
 gem 'slim-rails'
 gem 'coffee-views'

@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.new(params[:movie])
+    @movie = Movie.new(movie_params)
 
     respond_to do |format|
       if @movie.save
@@ -43,8 +43,18 @@ class MoviesController < ApplicationController
     end
   end
 
+  def destroy
+    @movie = Movie.find(params[:id])
+    @movie.destroy
+
+    render :index
+  end
 
   def get_genres
     @genres = Genre.all
+  end
+
+  def movie_params
+    params.require(:movie).permit(:name, :year, :director, :producer, :imdblink, :genre_id)
   end
 end
