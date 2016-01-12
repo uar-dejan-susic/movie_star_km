@@ -50,3 +50,4 @@ gem 'coffee-views'
 
 gem 'rspec-rails'
 
+gem 'simple_form'

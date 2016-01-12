@@ -1,0 +1,10 @@
+= simple_form_for(@movie) do |f|
+
+.form-inputs
+    - unless @movie.new_record?
+        = f.input :id, as: :hidden
+= f.input :genre_id, collection: @genres, prompt: "Select"
+= f.input :name
+
+  .form-actions
+    = f.button :submit

@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Slim Examples
+    title Movies app
     meta name="keywords" content="template language"
 
 
@@ -19,8 +19,11 @@ html
           tr
             td.name = item.name
             td.year = item.year
+            td.edit = link_to 'Edit', edit_movies_path(:id => item.id)
     - else
       p No items found. Please add some inventory.
         Thank you!
 
-    div id="footer"
+= link_to 'New Movie', new_movies_path
+
+div id="footer"
