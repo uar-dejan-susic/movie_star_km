@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
 
 
   def index
-    @items = Movie.all
+    @movies = Movie.all
   end
 
   def new
@@ -12,8 +12,7 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    @movie = Movie.find(params[:format])
-    #@movie = Movie.first
+    @movie = Movie.find(params[:id])
   end
 
   def create
@@ -45,7 +44,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:format])
+    @movie = Movie.find(params[:id])
 
     respond_to do |format|
       render :index
@@ -54,7 +53,7 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    @movie = Movie.find(params[:format])
+    @movie = Movie.find(params[:id])
     @movie.destroy
 
     render :index
