@@ -15,11 +15,12 @@ html
 
     - if @items.any?
       table#items
-        - for item in @items
+        - @items.each do |movie|
           tr
-            td.name = item.name
-            td.year = item.year
-            td.edit = link_to 'Edit', edit_movies_path(:id => item.id)
+            td.name = movie.name
+            td.year = movie.year
+            td = link_to 'Edit', edit_movie_path(movie)
+
     - else
       p No items found. Please add some inventory.
         Thank you!

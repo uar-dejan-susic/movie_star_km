@@ -1,4 +1,6 @@
 = simple_form_for(@movie) do |f|
+  - unless @movie.new_record?
+    = f.input :id, as: :hidden
   = f.error_notification
   = f.input :name
   = f.input :year

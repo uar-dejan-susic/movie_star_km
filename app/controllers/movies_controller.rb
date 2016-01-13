@@ -12,7 +12,8 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find(params[:format])
+    #@movie = Movie.first
   end
 
   def create
@@ -20,7 +21,7 @@ class MoviesController < ApplicationController
 
     respond_to do |format|
       if @movie.save
-        format.html { redirect_to :back, notice: 'Movie was successfully created.' }
+        format.html { redirect_to :controller => 'movies', :action => 'index', notice: 'Movie was successfully created.' }
         format.json { render json: @movie, status: :created, location: @movie }
       else
         format.html { render action: "new" }
@@ -30,11 +31,11 @@ class MoviesController < ApplicationController
   end
 
   def update
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find(params[:movie][:id])
 
     respond_to do |format|
-      if @movie.update_attributes(params[:movie])
-        format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
+      if @movie.update_attributes(movie_params)
+        format.html { redirect_to :controller => 'movies', :action => 'index', notice: 'Movie was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -43,8 +44,17 @@ class MoviesController < ApplicationController
     end
   end
 
+  def show
+    @movie = Movie.find(params[:format])
+
+    respond_to do |format|
+      render :index
+      format.json { render json: @movie }
+    end
+  end
+
   def destroy
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find(params[:format])
     @movie.destroy
 
     render :index
@@ -54,7 +64,9 @@ class MoviesController < ApplicationController
     @genres = Genre.all
   end
 
+  private
   def movie_params
     params.require(:movie).permit(:name, :year, :director, :producer, :imdblink, :genre_id)
   end
+
 end
