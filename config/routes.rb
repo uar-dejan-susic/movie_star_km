@@ -1,10 +1,7 @@
 MovieStarKm::Application.routes.draw do
-  #get "movies/edit"
-  #get "movies/new"
-  #get "movies/index"
 
-  resource :movies , only: [:show, :edit, :update, :destroy, :index, :create, :new]
-  resource :movie
+  resource :movies, only: [:new, :index, :create, :edit]
+  resource :movie, only: [:update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
