@@ -4,6 +4,8 @@ class Movie < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :genre_id, presence: true
 
+  validates :imdblink, :allow_blank => true, :format => URI::regexp(%w(http https))
+
   validate :year_cannot_be_more_than_3_year_in_future
 
   def year_cannot_be_more_than_3_year_in_future
