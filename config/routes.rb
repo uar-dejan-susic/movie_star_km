@@ -1,7 +1,5 @@
 MovieStarKm::Application.routes.draw do
 
-  resource :movies, only: [:new, :index, :create, :edit]
-  resource :movie, only: [:update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -57,4 +55,6 @@ MovieStarKm::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+   resources :movies
 end
