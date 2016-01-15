@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
 
   before_filter :get_genres
+  before_action :authenticate_user!
 
 
   def index
