@@ -2,3 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.loginlink { width:100%; margin:0 auto; text-align: center;}
+
+.loginlink a {
+  display: inline-block;
+  font-size: x-large;
+  font-weight: bold;
+  padding-top: 100px;
+}
+
+//.row > a:nth-child(2) {
+//  width: 50%;
+//  margin: 0 auto;
+//}
