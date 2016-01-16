@@ -5,7 +5,6 @@ html
     meta charset="utf-8"
     meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible"
     meta content="width=device-width, initial-scale=1.0" name="viewport"
-    = csrf_meta_tags
 
   = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
   = javascript_include_tag "application", "data-turbolinks-track" => true
@@ -25,10 +24,10 @@ html
             .title-content
               = yield(:title_content) if content_for?(:title_content)
 
-    .row
-       = content_for?(:content) ? yield(:content) : yield
+      .row
+         = content_for?(:content) ? yield(:content) : yield
 
-    hr
+      hr
       footer
         p © Kemal 2016
 
