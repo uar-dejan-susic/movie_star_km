@@ -11,3 +11,17 @@
  *= require_self
  *= require_tree .
  */
+
+@import "bootstrap";
+
+body {
+  margin: 20px;
+}
+
+input {
+  max-width: 400px;
+}
+
+select {
+  max-width: 400px;
+}
