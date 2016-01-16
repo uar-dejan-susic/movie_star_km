@@ -2,10 +2,18 @@
     margin-left: 30px;
 }
 
-.signin {
-  margin: 30px;
-}
-
 .forgotlink, .signinbtn {
   margin: 15px;
+}
+
+.user_email, .user_password, .user_password_confirmation {
+  margin-left: 15px !important;
+}
+
+.registrationbtn {
+  margin-left: 15px;
+}
+
+.registratiopage p {
+  font-size: x-large;
 }

@@ -11,11 +11,16 @@ html
   = csrf_meta_tags
 
   - if user_signed_in?
-    = link_to "Log out", destroy_user_session_path, method: :delete
-    = link_to "Change your password", edit_user_registration_path
+    div.navbar.navbar-default.navbar-fixed-top
+      div.container
+        div.navbar-header
+          .navbar-brand
+            = link_to "Log out", destroy_user_session_path, method: :delete
+          .navbar-brand
+            = link_to "Change your password", edit_user_registration_path
 
   body
-    .container
+    .container.page-header
       - if @title.present? || content_for?(:title_content)
         .page-title
           - if @title.present?
