@@ -8,19 +8,19 @@ h1 Movies list
 - if @movies.any?
   div.row#items
     - @movies.in_groups_of(4).each do |group|
+      .row.movierow
         -group.each do |movie|
           - if !movie.nil?
-            .col-md-3.movierow
-              = link_to image_tag('/images/movies.jpg'), root_url
 
-              .row
-              p.fontbold = movie.name
+              .col-md-3
 
-              .row
-              = movie.year
+                = link_to image_tag('/images/movies.jpg'), root_url
 
-              .row
-              = link_to 'Edit', edit_movie_path(movie)
+                p.fontbold = movie.name
+
+                p.fontbold = movie.year
+
+                = link_to 'Edit', edit_movie_path(movie)
 
 
 
@@ -28,5 +28,5 @@ h1 Movies list
   p No items found. Please add some inventory.
     Thank you!
 
-= link_to 'New Movie', new_movie_path
+div.newmovie = link_to 'New Movie', new_movie_path
 
