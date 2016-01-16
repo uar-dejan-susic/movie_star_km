@@ -6,12 +6,23 @@ h1 Movies list
 == yield
 
 - if @movies.any?
-  table#items
-    - @movies.each do |movie|
-      tr
-        td.name = movie.name
-        td.year = movie.year
-        td = link_to 'Edit', edit_movie_path(movie)
+  div.row#items
+    - @movies.in_groups_of(4).each do |group|
+        -group.each do |movie|
+          - if !movie.nil?
+            .col-md-3.movierow
+              = link_to image_tag('/images/movies.jpg'), root_url
+
+              .row
+              p.fontbold = movie.name
+
+              .row
+              = movie.year
+
+              .row
+              = link_to 'Edit', edit_movie_path(movie)
+
+
 
 - else
   p No items found. Please add some inventory.
