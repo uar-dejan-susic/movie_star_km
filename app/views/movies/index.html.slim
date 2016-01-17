@@ -14,7 +14,10 @@ h1 Movies list
 
               .col-md-3
 
-                = link_to image_tag('/images/movies.jpg'), root_url
+                -if !movie.image.nil? and !movie.image.thumb.nil? and !movie.image.thumb.url.nil?
+                  =image_tag movie.image.thumb.url
+                -else
+                  = link_to image_tag('/images/movies.jpg'), root_url
 
                 p.fontbold = movie.name
 
