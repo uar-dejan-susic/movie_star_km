@@ -23,8 +23,13 @@ h1 Movies list
 
                 p.fontbold = movie.year
 
-                = link_to 'Edit', edit_movie_path(movie)
+                div= link_to 'Edit', edit_movie_path(movie)
 
+                /a href="#"
+                /  i.fa.fa-save
+                - if user_signed_in?
+                  = link_to root_path, class: "btn btn-default", title: 'Add to my collection', 'data-toggle' => 'tooltip', 'data-placement' => 'right'
+                    i class="fa fa-save"
 
 
 - else
