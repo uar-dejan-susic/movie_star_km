@@ -25,9 +25,7 @@ h1 Movies list
 
                 div= link_to 'Edit', edit_movie_path(movie)
 
-                /a href="#"
-                /  i.fa.fa-save
-                - if user_signed_in?
+                - if !@usermovies.include? movie.id
                   = link_to root_path, class: "btn btn-default", title: 'Add to my collection', 'data-toggle' => 'tooltip', 'data-placement' => 'right'
                     i class="fa fa-save"
 

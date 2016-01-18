@@ -10,6 +10,8 @@ class Movie < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  has_many :user_movies
+
   def year_cannot_be_more_than_3_year_in_future
     if year.present? && year > (Date.today + 3.years).year
       errors.add(:year, "can't be more than 3 years in the future")
