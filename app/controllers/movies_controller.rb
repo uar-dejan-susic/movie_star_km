@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
-    @usermovies = UserMovie.where("user_id = " + current_user.id.to_s).pluck(:movie_id)
+    @usermovies = UserMovie.where('user_id = ' + current_user.id.to_s).pluck(:movie_id)
   end
 
   def new
@@ -25,7 +25,7 @@ class MoviesController < ApplicationController
         format.html { redirect_to :controller => 'movies', :action => 'index', notice: 'Movie was successfully created.' }
         format.json { render json: @movie, status: :created, location: @movie }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @movie.errors, status: :unprocessable_entity }
       end
     end
@@ -39,7 +39,7 @@ class MoviesController < ApplicationController
         format.html { redirect_to :controller => 'movies', :action => 'index', notice: 'Movie was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @movie.errors, status: :unprocessable_entity }
       end
     end
@@ -52,13 +52,12 @@ class MoviesController < ApplicationController
 
     respond_to do |format|
       if @usermovie.save
-        format.html { redirect_to :controller => 'movies', :action => 'index', notice: 'Movie was successfully added to your collection.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @movie.errors, status: :unprocessable_entity }
+        format.json { render json: @usermovie.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   def show

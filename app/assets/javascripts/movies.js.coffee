@@ -7,13 +7,19 @@ $ ->
 
   $(".ucollicon").on "click",(e) ->
     e.preventDefault()
+    e.stopPropagation()
     $.ajax({
       type: "POST",
-      url: "/movies/" + e.currentTarget.id + "/addtouserscollection",
-      #data: { },
+      dataType: "json"
+      contentType:"application/json; charset=utf-8"
+      url: "/movies/" + e.currentTarget.id + "/addtouserscollection.json"
+      data: { },
       success:(data) ->
-        alert data.id
+        alert('success')
+        window.location.href = '/movies'
         return false
       error:(data) ->
+        alert('error')
+        window.location.href = '/movies'
         return false
     })
