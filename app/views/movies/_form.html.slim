@@ -1,7 +1,4 @@
 = simple_form_for @movie, :html => { :multipart => true } do |f|
-  /-if @movie.errors.any?
-  /  movie.errors.full_messages.each do |message|
-  /    li = message
 
   - unless @movie.new_record?
     = f.input :id, as: :hidden
