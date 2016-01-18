@@ -64,5 +64,10 @@ MovieStarKm::Application.routes.draw do
   #     resources :products
   #   end
 
-   resources :movies
+   resources :movies do
+      member do
+        post 'addtouserscollection', :action => :add_to_users_collection
+      end
+   end
+
 end

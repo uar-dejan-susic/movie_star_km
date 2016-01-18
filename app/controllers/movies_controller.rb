@@ -46,6 +46,22 @@ class MoviesController < ApplicationController
     end
   end
 
+  def add_to_users_collection
+    @usermovie = UserMovie.new
+    @usermovie.user_id = current_user.id
+    @usermovie.movie_id = params[:id]
+
+    respond_to do |format|
+      if @usermovie.save
+        format.html { redirect_to :controller => 'movies', :action => 'index', notice: 'Movie was successfully added to your collection.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @movie.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def show
     @movie = Movie.find(params[:id])
 
