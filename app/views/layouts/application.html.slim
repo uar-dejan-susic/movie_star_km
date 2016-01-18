@@ -2,9 +2,37 @@ doctype html
 html
   head
     title Movie Star (Kemal Muhovic)
+    meta charset="utf-8"
+    meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
+
   = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
   = javascript_include_tag "application", "data-turbolinks-track" => true
   = csrf_meta_tags
 
-  = yield
+  - if user_signed_in?
+    div.navbar.navbar-default.navbar-fixed-top
+      div.container
+        div.navbar-header
+          .navbar-brand
+            = link_to "Log out", destroy_user_session_path, method: :delete
+          .navbar-brand
+            = link_to "Change your password", edit_user_registration_path
+
+  body
+    .container.page-header
+      - if @title.present? || content_for?(:title_content)
+        .page-title
+          - if @title.present?
+            h4.pull-left= @title
+          .pull-right
+            .title-content
+              = yield(:title_content) if content_for?(:title_content)
+
+      .row
+         = content_for?(:content) ? yield(:content) : yield
+
+    .footer
+      footer
+        p © Kemal 2016
 

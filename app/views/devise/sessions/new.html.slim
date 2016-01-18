@@ -1,0 +1,19 @@
+div
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' }) do |f|
+    fieldset#user_details
+      legend Sign In
+      .row
+        .signin
+          = f.input :email, label: "Email"
+          = f.input :password, label: "Password"
+        //div.forgotlink
+          = link_to "Forgot your password?", new_password_path(resource_name)
+
+
+      .row
+          div.control-group
+            div.controls.signinbtn
+              = f.button :submit, value: 'Sign In', class: 'btn-primary btn-main-submit'
+
+
+//= render "devise/shared/links"

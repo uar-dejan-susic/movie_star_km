@@ -1,10 +1,13 @@
 class MoviesController < ApplicationController
 
   before_filter :get_genres
+  before_action :authenticate_user!
 
 
   def index
+    #@movies = Movie.includes(:user_movies).all
     @movies = Movie.all
+    @usermovies = UserMovie.where("user_id = " + current_user.id.to_s).pluck(:movie_id)
   end
 
   def new
@@ -43,6 +46,22 @@ class MoviesController < ApplicationController
     end
   end
 
+  def add_to_users_collection
+    @usermovie = UserMovie.new
+    @usermovie.user_id = current_user.id
+    @usermovie.movie_id = params[:id]
+
+    respond_to do |format|
+      if @usermovie.save
+        format.html { redirect_to :controller => 'movies', :action => 'index', notice: 'Movie was successfully added to your collection.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @movie.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def show
     @movie = Movie.find(params[:id])
 
@@ -65,7 +84,7 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:name, :year, :director, :producer, :imdblink, :genre_id)
+    params.require(:movie).permit(:name, :year, :director, :producer, :imdblink, :genre_id, :image, :id)
   end
 
 end

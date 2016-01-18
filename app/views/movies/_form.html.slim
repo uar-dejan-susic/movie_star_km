@@ -1,11 +1,34 @@
-= simple_form_for(@movie) do |f|
+= simple_form_for @movie, :html => { :multipart => true } do |f|
+  /-if @movie.errors.any?
+  /  movie.errors.full_messages.each do |message|
+  /    li = message
+
   - unless @movie.new_record?
     = f.input :id, as: :hidden
-  = f.error_notification
-  = f.input :name
-  = f.input :year
-  = f.input :producer
-  = f.input :director
-  = f.input :imdblink
-  = f.association :genre
-  = f.button :submit
+  .form-inputs
+    div.span3
+      = f.error_notification
+
+    div.span3
+      = f.input :name, required: true
+
+    div.span3
+      = f.input :year
+
+    div.span3
+      = f.input :producer
+
+    div.span3
+      = f.input :director
+
+    div.span3
+      = f.input :imdblink
+
+    div.span3
+      = f.association :genre, required: true
+
+    div.span3
+      = f.file_field :image
+
+    div.span3
+      = f.button :submit, class: 'btn btn-primary'

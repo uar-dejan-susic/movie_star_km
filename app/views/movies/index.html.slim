@@ -6,16 +6,33 @@ h1 Movies list
 == yield
 
 - if @movies.any?
-  table#items
-    - @movies.each do |movie|
-      tr
-        td.name = movie.name
-        td.year = movie.year
-        td = link_to 'Edit', edit_movie_path(movie)
+  div.row#items
+    - @movies.in_groups_of(4).each do |group|
+      .row.movierow
+        -group.each do |movie|
+          - if !movie.nil?
+
+              .col-md-3
+
+                -if !movie.image.nil? and !movie.image.thumb.nil? and !movie.image.thumb.url.nil?
+                  =image_tag movie.image.thumb.url
+                -else
+                  = link_to image_tag('/images/movies.jpg'), root_url
+
+                p.fontbold = movie.name
+
+                p.fontbold = movie.year
+
+                div= link_to 'Edit', edit_movie_path(movie)
+
+                - if !@usermovies.include? movie.id
+                  = link_to  addtouserscollection_movie_path(movie), :method => :post, class: "btn btn-default", title: 'Add to my collection', 'data-toggle' => 'tooltip', 'data-placement' => 'right'
+                    i class="fa fa-save"
+
 
 - else
   p No items found. Please add some inventory.
     Thank you!
 
-= link_to 'New Movie', new_movie_path
+div.newmovie = link_to 'New Movie', new_movie_path
 
