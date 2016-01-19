@@ -15,7 +15,7 @@ $ ->
       url: "/movies/" + e.currentTarget.id + "/addtouserscollection.json"
       data: { },
       success:(data) ->
-        alert('success')
+        alert('Movie has been added to your collection!')
         window.location.href = '/movies'
         return false
       error:(data) ->

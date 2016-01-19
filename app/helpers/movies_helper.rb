@@ -10,10 +10,8 @@ module MoviesHelper
       end
   end
 
-  def show_add_to_collection_btn (usermovies, movie)
-    if !usermovies.include? movie.id
-      "<a data-original-title='Add to my collection' class='btn btn-default ucollicon' data-id=#{movie.id} data-method='post' data-placement='right' data-toggle='tooltip' href='#' id= #{movie.id} rel='nofollow' title=""><i class='fa fa-save'></i></a>"
-    end
+  def is_users_movie (usermovies, movie)
+    return (!usermovies.include? movie.id)
   end
 
 end
