@@ -20,7 +20,7 @@ h1 Movies list
 
                 div= link_to 'Edit', edit_movie_path(movie)
 
-                - if is_users_movie_v2 movie
+                - if is_my_movie? movie
                   = link_to '', id: movie.id, :method => :post, class: "btn btn-default ucollicon", title: 'Add to my collection', 'data-id' => movie.id, 'data-toggle' => 'tooltip', 'data-placement' => 'right'
                     i class="fa fa-save"
 

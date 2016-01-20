@@ -10,11 +10,11 @@ module MoviesHelper
       end
   end
 
-  def is_users_movie(movie)
+  def is_users_movie?(movie)
     return (!@usermovies.include? movie.id)
   end
 
-  def is_users_movie_v2(movie)
+  def is_my_movie?(movie)
     return !(current_user.user_movies.map(&:movie_id).include? movie.id)
   end
 
