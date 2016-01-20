@@ -10,8 +10,8 @@ module MoviesHelper
       end
   end
 
-  def is_users_movie (usermovies, movie)
-    return (!usermovies.include? movie.id)
+  def is_users_movie (movie)
+    return (!@usermovies.include? movie.id)
   end
 
 end
