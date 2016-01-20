@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
-    @usermovies = UserMovie.where('user_id = ' + current_user.id.to_s).pluck(:movie_id)
+    @usermovies = current_user.user_movies.pluck(:movie_id)
   end
 
   def new
