@@ -50,6 +50,8 @@ test:
   pool: 5
   username: kemal
   password: kemal
+  host: localhost
+  port: 5432
 
 production:
   adapter: postgresql
