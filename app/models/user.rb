@@ -5,5 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :user_movies
+  has_many :movies, through: :user_movies
 
 end
