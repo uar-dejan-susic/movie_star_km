@@ -5,7 +5,6 @@ class MoviesController < ApplicationController
 
 
   def index
-    #@movies = Movie.includes(:user_movies).all
     @movies = Movie.all
     @usermovies = UserMovie.where("user_id = " + current_user.id.to_s).pluck(:movie_id)
   end
@@ -60,22 +59,6 @@ class MoviesController < ApplicationController
         format.json { render json: @movie.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def show
-    @movie = Movie.find(params[:id])
-
-    respond_to do |format|
-      render :index
-      format.json { render json: @movie }
-    end
-  end
-
-  def destroy
-    @movie = Movie.find(params[:id])
-    @movie.destroy
-
-    render :index
   end
 
   def get_genres

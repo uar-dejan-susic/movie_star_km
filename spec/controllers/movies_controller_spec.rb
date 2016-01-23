@@ -61,4 +61,24 @@ RSpec.describe MoviesController, type: :controller do
     end
   end
 
+  describe 'GET new' do
+    it 'assigns a new movie as @movie' do
+      login_with create( :user )
+      get :new
+      expect(assigns(:movie)).to be_a_new(Movie)
+    end
+  end
+
+  describe 'GET edit' do
+    before :each do
+      @existing_movie = Movie.create!({name: 'Movie 1', genre_id: Genre.first.id })
+    end
+
+    it 'assigns the requested movie as @movie' do
+      login_with create( :user )
+      get :edit, {:id => @existing_movie.to_param}
+      expect(assigns(:movie)).to eq(@existing_movie)
+    end
+  end
+
 end
