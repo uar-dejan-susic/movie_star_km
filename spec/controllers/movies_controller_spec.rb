@@ -20,11 +20,13 @@ RSpec.describe MoviesController, type: :controller do
     expect( response ).to render_template( :index )
   end
 
-  # describe "GET #edit" do
-  #   it "returns http success" do
-  #     get :edit
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
+  context 'with valid attributes' do
+    it 'creates the movie' do
+      login_with create( :user )
+      Integer mcount = Movie.count
+      post :create, movie: attributes_for(:movie)
+      expect(Movie.count).to eq(mcount + 1)
+    end
+  end
 
 end
