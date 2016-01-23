@@ -32,7 +32,8 @@ class MoviesController < ApplicationController
   end
 
   def update
-    @movie = Movie.find(params[:movie][:id])
+    # @movie = Movie.find(params[:movie][:id])
+    @movie = Movie.find(params[:id])
 
     respond_to do |format|
       if @movie.update_attributes(movie_params)
