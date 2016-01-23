@@ -53,11 +53,25 @@ gem 'bootstrap-sass'
 gem 'slim'
 gem 'slim-rails'
 gem 'coffee-views'
-
-gem 'rspec-rails'
-
 gem 'simple_form'
-
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'font-awesome-rails'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
+group :test do
+  #gem 'database_cleaner'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers', :require => false
+  #gem 'capybara-webkit'
+  #gem 'capybara-screenshot', :require => false
+end
