@@ -29,4 +29,36 @@ RSpec.describe MoviesController, type: :controller do
     end
   end
 
+  context 'with invalid attributes' do
+    it 'does not create the movie' do
+      login_with create( :user )
+      Integer mcount = Movie.count
+      post :create, movie: attributes_for(:movie, name: nil)
+      expect(Movie.count).to eq(mcount)
+    end
+
+    it 're-renders the "new" view' do
+      login_with create( :user )
+      post :create, movie: attributes_for(:movie, name: nil)
+      expect(response).to render_template :new
+    end
+  end
+
+  context 'json' do
+    context 'with valid attributes' do
+      it 'creates the movie-user association' do
+        login_with create( :user )
+        Integer user_movies_count = UserMovie.count
+        post :add_to_users_collection, id: Movie.first.id, format: :json
+        expect(UserMovie.count).to eq(user_movies_count + 1)
+      end
+
+      it 'responds with 201' do
+        login_with create( :user )
+        post :add_to_users_collection, id: Movie.first.id, format: :json
+        expect(response).to have_http_status(204)
+      end
+    end
+  end
+
 end

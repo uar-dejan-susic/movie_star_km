@@ -22,4 +22,8 @@ RSpec.describe Movie, type: :model do
     it { should have_db_column(:director).of_type(:string) }
     it { should have_db_column(:imdblink).of_type(:string) }
   end
+
+  it 'is invalid without a name' do
+    expect(build(:movie, name: nil)).to_not be_valid
+  end
 end
