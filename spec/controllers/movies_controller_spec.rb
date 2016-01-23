@@ -14,6 +14,12 @@ RSpec.describe MoviesController, type: :controller do
     end
   end
 
+  it "should let a user see all the movies" do
+    login_with create( :user )
+    get :index
+    expect( response ).to render_template( :index )
+  end
+
   # describe "GET #edit" do
   #   it "returns http success" do
   #     get :edit
